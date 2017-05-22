@@ -1,0 +1,17 @@
+body {
+	padding: 0;
+}
+
+#slider {
+	width: 960px;
+	margin: 30px auto;
+	height: 330px;
+	border: 3px solid #000;
+	position: relative;
+	overflow: hidden;
+}
+
+#slider img {
+	position: relative;
+	left: -130px;
+}
