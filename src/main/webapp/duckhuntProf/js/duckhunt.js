@@ -6,20 +6,26 @@ function duckReset(){
 	$("#duck").attr("src", "img/duck-right.gif");
 }
 
-function duckExit(){
+function duckExit() {
 	duckReset();
 	flyRight();
 }
 
-function flyRight(){
+function flyRight() {
 	duckSent++;
 
 	if (duckSent == 10){
 		alert("partie finie !");
 	}
-
+	
 	//anime vers la droite. duckExit sera appelée à la fin de l'animation
 	$("#duck").animate({"left":800, "top": Math.random() * 400}, 1000 + Math.random() * 1000, duckExit);
+}
+
+function flyLeft() {
+	
+	//anime vers la gauche. duckExit sera appelée à la fin de l'animation
+	$("#duck").animate({"left":-800, "top": Math.random() * 400}, 1000 + Math.random() * 1000, duckExit);	
 }
 
 function killDuck(){
