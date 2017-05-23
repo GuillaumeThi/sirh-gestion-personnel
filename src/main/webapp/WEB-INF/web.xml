@@ -13,7 +13,6 @@
 	</servlet-mapping>
 	
 	
-	
 	<servlet>
 		<servlet-name>EditerCollaborateurController</servlet-name>
 		<servlet-class>dev.sgp.web.EditerCollaborateurController</servlet-class>
@@ -34,5 +33,26 @@
 		<servlet-name>CreerCollaborateurController</servlet-name>
 		<url-pattern>/collaborateurs/new</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>ListerVisitesController</servlet-name>
+		<servlet-class>dev.sgp.web.ListerVisitesController</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>ListerVisitesController</servlet-name>
+		<url-pattern>/visites/lister</url-pattern>
+	</servlet-mapping>
+	
+	
+	
+	<filter>
+		<filter-name>FrequentationFilter</filter-name>
+		<filter-class>dev.sgp.filtre.FrequentationFilter</filter-class>
+		</filter>
+		<filter-mapping>
+		<filter-name>FrequentationFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
 
 </web-app>

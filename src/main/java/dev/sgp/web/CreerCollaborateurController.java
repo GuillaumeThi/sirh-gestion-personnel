@@ -42,7 +42,7 @@ public class CreerCollaborateurController extends HttpServlet {
 		
 		String matricule = UUID.randomUUID().toString();
 		String email = nom + "." + prenom + "@" + "scociété" + ".com";
-		String photo = "url" + "photo.png";
+		String photo = "path" + "photo.png";
 		
 		
 		resp.setCharacterEncoding("utf-8");
