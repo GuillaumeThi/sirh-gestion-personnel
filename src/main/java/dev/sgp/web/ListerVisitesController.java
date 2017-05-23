@@ -19,7 +19,7 @@ private VisiteWebService visiteService = Constantes.VISITE_SERVICE;
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		List<VisiteLog> visites = visiteService.listerLogs();
+		List<VisiteLog> visites = visiteService.construireStatistiques();
 		
 		req.setAttribute("visites", visites);
 		req.getRequestDispatcher("/WEB-INF/views/logs/listerVisites.jsp")

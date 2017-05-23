@@ -7,9 +7,8 @@ public class VisiteWeb {
 	private long tempsExecution;
 	
 	
-	public VisiteWeb(int id, String chemin, long tempsExecution) {
+	public VisiteWeb(String chemin, long tempsExecution) {
 		super();
-		this.id = id;
 		this.chemin = chemin;
 		this.tempsExecution = tempsExecution;
 	}

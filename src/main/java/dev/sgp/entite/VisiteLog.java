@@ -3,13 +3,13 @@ package dev.sgp.entite;
 public class VisiteLog {
 
 	private String chemin;
-	private int nbVisites;
+	private long nbVisites;
 	private long min;
 	private long max;
-	private long moyenne;
+	private double moyenne;
 	
 	
-	public VisiteLog(String chemin, int nbVisites, long min, long max, long moyenne) {
+	public VisiteLog(String chemin, long nbVisites, long min, long max, double moyenne) {
 		super();
 		this.chemin = chemin;
 		this.nbVisites = nbVisites;
@@ -29,12 +29,12 @@ public class VisiteLog {
 	}
 
 
-	public int getNbVisites() {
+	public long getNbVisites() {
 		return nbVisites;
 	}
 
 
-	public void setNbVisites(int nbVisites) {
+	public void setNbVisites(long nbVisites) {
 		this.nbVisites = nbVisites;
 	}
 	
@@ -63,15 +63,13 @@ public class VisiteLog {
 	}
 
 
-	public long getMoyenne() {
+	public double getMoyenne() {
 		return moyenne;
 	}
 
 
-	public void setMoyenne(long moyenne) {
+	public void setMoyenne(double moyenne) {
 		this.moyenne = moyenne;
 	}
-	
-	
 	
 }
