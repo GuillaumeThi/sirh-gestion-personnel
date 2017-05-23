@@ -8,12 +8,15 @@ import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 
 import dev.sgp.entite.VisiteWeb;
 import dev.sgp.service.VisiteWebService;
 import dev.sgp.util.Constantes;
 
+
+@WebFilter(urlPatterns = { "/*" }, description = "statistic filter")
 public class FrequentationFilter implements Filter {
 	
 	private VisiteWebService visiteService = Constantes.VISITE_SERVICE;
@@ -29,6 +32,7 @@ public class FrequentationFilter implements Filter {
 		throws IOException, ServletException {
 		
 		String path = ((HttpServletRequest) req).getRequestURI();
+		String method = ((HttpServletRequest) req).getMethod();
 		
 		long before = System.currentTimeMillis();
 		chain.doFilter(req, resp);
