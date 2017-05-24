@@ -3,14 +3,22 @@ package dev.sgp.entite;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
 
+@Entity
 public class CollabEvent {
-
+	
+	@Id
+	private int id;
 	private ZonedDateTime dateHeure;
 	private TypeCollabEvent type;
 	private String matricule;
 	
+	public CollabEvent() {
+		
+	}
 	
 	public CollabEvent(ZonedDateTime dateHeure, TypeCollabEvent type, String matricule) {
 		super();

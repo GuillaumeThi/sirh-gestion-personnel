@@ -1,13 +1,21 @@
 package dev.sgp.entite;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class VisiteLog {
 
+	@Id
 	private String chemin;
 	private long nbVisites;
 	private long min;
 	private long max;
 	private double moyenne;
 	
+	public VisiteLog() {
+		
+	}
 	
 	public VisiteLog(String chemin, long nbVisites, long min, long max, double moyenne) {
 		super();

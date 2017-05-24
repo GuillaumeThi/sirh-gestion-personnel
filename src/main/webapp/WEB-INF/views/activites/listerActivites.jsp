@@ -11,6 +11,9 @@
 </head>
 
 <body>
+
+	<%@include file="../template/header.jsp"%>
+
 	<h1 style="text-align:center; margin:20px 0 30px 0">Activités depuis le démarrage de l'application</h1>
 	
 	<table class="table table-striped">
@@ -25,7 +28,14 @@
         	<c:forEach var="collabEvent" items="${collabEvents}">
         	<tr>
         		<td>${collabEvent.formattedDateHeure}</td>
-        		<td>${collabEvent.matricule}</td>
+        		
+        		<c:if test="${collabEvent.type == 'CREATION_COLLAB'}">
+        		<td>Création d'un nouveau collaborateur - matricule : ${collabEvent.matricule}</td>
+        		</c:if>
+        		
+        		<c:if test="${collabEvent.type == 'MODIFICATION_COLLAB'}">
+        		<td>Modification d'un collaborateur - matricule : ${collabEvent.matricule}</td>
+        		</c:if>
         	</tr>
         	</c:forEach>
         </tbody>

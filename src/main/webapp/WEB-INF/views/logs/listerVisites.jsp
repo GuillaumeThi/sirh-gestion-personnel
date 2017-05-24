@@ -11,6 +11,9 @@
 </head>
 
 <body>
+
+	<%@include file="../template/header.jsp"%>
+
 	<h1 style="text-align:center; margin:20px 0 30px 0">Les visites</h1>
 	
 	<table class="table table-striped">

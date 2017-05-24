@@ -15,7 +15,7 @@ import dev.sgp.service.ActiviteService;
 
 
 
-@WebServlet("/activites/lister")
+@WebServlet("/collaborateurs/activites")
 public class ListerActivitesController extends HttpServlet {
 	
 	@Inject private ActiviteService activiteService;

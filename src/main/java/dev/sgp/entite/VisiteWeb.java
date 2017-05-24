@@ -1,11 +1,19 @@
 package dev.sgp.entite;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class VisiteWeb {
 	
+	@Id
 	private int id;
 	private String chemin;
 	private long tempsExecution;
 	
+	public VisiteWeb() {
+		
+	}
 	
 	public VisiteWeb(String chemin, long tempsExecution) {
 		super();

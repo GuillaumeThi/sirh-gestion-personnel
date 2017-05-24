@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import dev.sgp.entite.VisiteLog;
 import dev.sgp.service.VisiteWebService;
 
-@WebServlet("/visites/lister")
+@WebServlet("/collaborateurs/statistiques")
 public class ListerVisitesController extends HttpServlet {
 	
 //private VisiteWebService visiteService = Constantes.VISITE_SERVICE;
