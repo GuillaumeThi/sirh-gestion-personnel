@@ -10,22 +10,23 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dev.sgp.entite.VisiteLog;
-import dev.sgp.service.VisiteWebService;
+import dev.sgp.entite.CollabEvent;
+import dev.sgp.service.ActiviteService;
 
-@WebServlet("/visites/lister")
-public class ListerVisitesController extends HttpServlet {
+
+
+@WebServlet("/activites/lister")
+public class ListerActivitesController extends HttpServlet {
 	
-//private VisiteWebService visiteService = Constantes.VISITE_SERVICE;
-	@Inject private VisiteWebService visiteService;
+	@Inject private ActiviteService activiteService;
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		List<VisiteLog> visites = visiteService.construireStatistiques();
+		List<CollabEvent> collabEvents = activiteService.listerActivitesCollab();
 		
-		req.setAttribute("visites", visites);
-		req.getRequestDispatcher("/WEB-INF/views/logs/listerVisites.jsp")
+		req.setAttribute("collabEvents", collabEvents);
+		req.getRequestDispatcher("/WEB-INF/views/activites/listerActivites.jsp")
 			.forward(req, resp);
 	}
 }

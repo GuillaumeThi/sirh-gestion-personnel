@@ -1,7 +1,6 @@
 package dev.sgp.entite;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 
 public class Collaborateur {

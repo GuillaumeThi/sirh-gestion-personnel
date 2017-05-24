@@ -32,7 +32,7 @@ public class FrequentationFilter implements Filter {
 		throws IOException, ServletException {
 		
 		String path = ((HttpServletRequest) req).getRequestURI();
-		String method = ((HttpServletRequest) req).getMethod();
+		//String method = ((HttpServletRequest) req).getMethod();
 		
 		long before = System.currentTimeMillis();
 		chain.doFilter(req, resp);
