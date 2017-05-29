@@ -62,7 +62,62 @@ public class CollaborateurService {
 		collabEvent.fire(new CollabEvent(now, TypeCollabEvent.CREATION_COLLAB, collab.getMatricule()));
 	}
 	
-	public void editerCollaborateur(Collaborateur collab) {
+	public void editerCollaborateur(String matricule, Collaborateur collab) {
 		
+		Collaborateur collabCourant = findByMatricule(matricule);
+		
+		if(collabCourant != null) {
+			
+			CollabEvent nouveauCollabEvent = new CollabEvent();
+			
+			nouveauCollabEvent.setMatricule(collab.getMatricule());
+			nouveauCollabEvent.setDateHeure(collab.getDateHeureCreation());
+			nouveauCollabEvent.setType(TypeCollabEvent.MODIFICATION_COLLAB);
+			
+			collabCourant.setEmail(collab.getEmail());
+			collabCourant.setActif(collab.isActif());
+			
+			collabEvent.fire(nouveauCollabEvent);
+		}
+	}
+	
+	public List<String> afficherDonneesBancaires(String matricule) {
+		
+		Collaborateur courant = findByMatricule(matricule);
+		List<String> donneesBancaires = new ArrayList<String>();
+		
+		donneesBancaires.add(courant.getBanque());
+		donneesBancaires.add(courant.getBic());
+		donneesBancaires.add(courant.getIban());
+		
+		return donneesBancaires;
+	}
+	
+	public boolean editerDonneesBancaires(String matricule, Collaborateur collab) {
+		
+		Collaborateur collabCourant = findByMatricule(matricule);
+		
+		if(collab.getBanque() == null || collab.getBic() == null || collab.getIban() == null) {
+			return false;
+		}
+		else if(collabCourant != null) {
+				
+			CollabEvent nouveauCollabEvent = new CollabEvent();
+			
+			nouveauCollabEvent.setMatricule(collab.getMatricule());
+			nouveauCollabEvent.setDateHeure(collab.getDateHeureCreation());
+			nouveauCollabEvent.setType(TypeCollabEvent.MODIFICATION_COLLAB);
+			
+			collabCourant.setBanque(collab.getBanque());
+			collabCourant.setBic(collab.getBic());
+			collabCourant.setIban(collab.getIban());
+			
+			collabEvent.fire(nouveauCollabEvent);
+				
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 }

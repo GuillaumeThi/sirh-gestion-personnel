@@ -5,7 +5,6 @@ import java.time.ZonedDateTime;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
@@ -21,8 +20,11 @@ public class Collaborateur {
 	private String email;
 	private String photo;
 	private ZonedDateTime dateHeureCreation;
-	private Boolean actif;
-	
+	private boolean actif;
+	private String banque;
+	private String bic;
+	private String iban;
+
 	@ManyToOne
 	private Departement departement;
 	
@@ -62,7 +64,7 @@ public class Collaborateur {
 	}
 	
 	public Collaborateur(String matricule, String nom, String prenom, LocalDate dateDeNaissance, String adresse, String numSecu,
-			String email, String photo, ZonedDateTime dateHeureCreation, boolean actif, Departement departement) {
+			String email, String photo, ZonedDateTime dateHeureCreation, boolean actif, Departement departement, String banque, String bic, String iban) {
 		
 		super();
 		this.matricule = matricule;
@@ -76,6 +78,9 @@ public class Collaborateur {
 		this.dateHeureCreation = dateHeureCreation;
 		this.actif = actif;
 		this.departement = departement;
+		this.banque = banque;
+		this.bic = bic;
+		this.iban = iban;
 	}
 
 	public String getMatricule() {
@@ -150,11 +155,11 @@ public class Collaborateur {
 		this.dateHeureCreation = dateHeureCreation;
 	}
 	
-	public Boolean getActif() {
+	public boolean isActif() {
 		return actif;
 	}
 	
-	public void setActif(Boolean actif) {
+	public void setActif(boolean actif) {
 		this.actif = actif;
 	}
 	
@@ -162,7 +167,32 @@ public class Collaborateur {
 		return departement;
 	}
 	
-	public void setActif(Departement departement) {
+	public void setDepartement(Departement departement) {
 		this.departement = departement;
 	}
+	
+	public String getBanque() {
+		return banque;
+	}
+
+	public void setBanque(String banque) {
+		this.banque = banque;
+	}
+
+	public String getBic() {
+		return bic;
+	}
+
+	public void setBic(String bic) {
+		this.bic = bic;
+	}
+
+	public String getIban() {
+		return iban;
+	}
+
+	public void setIban(String iban) {
+		this.iban = iban;
+	}
+	
 }

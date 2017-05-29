@@ -5,11 +5,14 @@ import java.util.List;
 import java.util.LongSummaryStatistics;
 import java.util.Map;
 
+import javax.enterprise.context.ApplicationScoped;
+
 import static java.util.stream.Collectors.*;
 
 import dev.sgp.entite.VisiteLog;
 import dev.sgp.entite.VisiteWeb;
 
+@ApplicationScoped
 public class VisiteWebService {
 
 	List<VisiteWeb> listeVisites = new ArrayList<>();
@@ -40,6 +43,5 @@ public class VisiteWebService {
 				summarizingLong(VisiteWeb::getTempsExecution));
 		return new VisiteLog(chemin, stats.getCount(), stats.getMin(), stats.getMax(), stats.getAverage());
 	}
-
 
 }
