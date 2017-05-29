@@ -8,7 +8,6 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.ResponseBuilder;
-import javax.ws.rs.core.Response.Status;
 
 import dev.sgp.entite.CollabEvent;
 import dev.sgp.entite.Collaborateur;
@@ -50,7 +49,7 @@ public class CollaborateurResource {
 	
 	@PUT
 	@Path("/{matricule}")
-	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
 	public Response editerCollaborateur(@PathParam("matricule") String matricule, Collaborateur collaborateur) {
 		
 		collabService.editerCollaborateur(matricule, collaborateur);
@@ -61,18 +60,21 @@ public class CollaborateurResource {
 	
 	@PUT
 	@Path("/{matricule}/banque")
-	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
 	public Response editerDonneesBancaires(@PathParam("matricule") String matricule, Collaborateur collaborateur) {
 		
 		ResponseBuilder builder;
+		List<String> erreurs = collabService.editerDonneesBancaires(matricule, collaborateur);
 		
-		if(collabService.editerDonneesBancaires(matricule, collaborateur)) {
+		if(erreurs.isEmpty()) {
 			
 			builder = Response.ok();
 		}
 		else {
 			
-			builder = Response.status(400);
+			builder = Response
+				.status(400)
+				.entity("Manquants : " + erreurs);
 		}
 			
 		return builder.build();

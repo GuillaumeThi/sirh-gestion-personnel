@@ -93,15 +93,25 @@ public class CollaborateurService {
 		return donneesBancaires;
 	}
 	
-	public boolean editerDonneesBancaires(String matricule, Collaborateur collab) {
+	public List<String> editerDonneesBancaires(String matricule, Collaborateur collab) {
 		
 		Collaborateur collabCourant = findByMatricule(matricule);
+		List<String> erreursList = new ArrayList<String>();
 		
-		if(collab.getBanque() == null || collab.getBic() == null || collab.getIban() == null) {
-			return false;
+		if(collab.getBanque() == null) {
+			erreursList.add("Banque");
 		}
-		else if(collabCourant != null) {
-				
+		
+		if(collab.getBic() == null) {
+			erreursList.add("BIC");
+		}
+		
+		if(collab.getIban() == null) {
+			erreursList.add("IBAN");
+		}
+		
+		if(collabCourant != null) {
+			
 			CollabEvent nouveauCollabEvent = new CollabEvent();
 			
 			nouveauCollabEvent.setMatricule(collab.getMatricule());
@@ -113,11 +123,33 @@ public class CollaborateurService {
 			collabCourant.setIban(collab.getIban());
 			
 			collabEvent.fire(nouveauCollabEvent);
-				
-			return true;
 		}
-		else {
-			return false;
-		}
+		
+		return erreursList;
+		
+//		Collaborateur collabCourant = findByMatricule(matricule);
+//		
+//		if(collab.getBanque() == null || collab.getBic() == null || collab.getIban() == null) {
+//			return false;
+//		}
+//		else if(collabCourant != null) {
+//				
+//			CollabEvent nouveauCollabEvent = new CollabEvent();
+//			
+//			nouveauCollabEvent.setMatricule(collab.getMatricule());
+//			nouveauCollabEvent.setDateHeure(collab.getDateHeureCreation());
+//			nouveauCollabEvent.setType(TypeCollabEvent.MODIFICATION_COLLAB);
+//			
+//			collabCourant.setBanque(collab.getBanque());
+//			collabCourant.setBic(collab.getBic());
+//			collabCourant.setIban(collab.getIban());
+//			
+//			collabEvent.fire(nouveauCollabEvent);
+//				
+//			return true;
+//		}
+//		else {
+//			return false;
+//		}
 	}
 }
