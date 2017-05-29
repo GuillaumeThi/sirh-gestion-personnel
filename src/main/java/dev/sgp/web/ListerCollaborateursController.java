@@ -39,7 +39,7 @@ public class ListerCollaborateursController extends HttpServlet {
 		
 		
 		
-		List<Collaborateur> collaborateurs = collabService.listerCollaborateurs();
+		List<Collaborateur> collaborateurs = collabService.listerCollaborateurs(-1);
 
 		List<Departement> departements = dptService.listerDepartements();
 		

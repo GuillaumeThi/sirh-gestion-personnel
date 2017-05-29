@@ -22,18 +22,35 @@ public class CollaborateurService {
 	
 	@PersistenceContext(unitName="sgp-pu") private EntityManager em;
 	
-	//List<Collaborateur> listeCollaborateurs = new ArrayList<>();
 	
-	
-	public List<Collaborateur> listerCollaborateurs() {
+	public List<Collaborateur> listerCollaborateurs(Integer idDep) {
 		
 		List<Collaborateur> collaborateurs = new ArrayList<>();
 		
-		TypedQuery<Collaborateur> query = em.createQuery("select c from Collaborateur c", Collaborateur.class);
-		
-		collaborateurs = query.getResultList();
+		if (idDep == null) {
+			
+			TypedQuery<Collaborateur> query = em.createQuery("select c from Collaborateur c", Collaborateur.class);
+			
+			collaborateurs = query.getResultList();
+		}
+		else {
+			
+			TypedQuery<Collaborateur> query = em.createQuery("select c from Collaborateur c where c.departement.id = :idDep", Collaborateur.class)
+					.setParameter("idDep", idDep);
+			
+			collaborateurs = query.getResultList();
+		}
 		
 		return collaborateurs;
+	}
+	
+	
+	public Collaborateur findByMatricule(String matricule) {
+		
+		TypedQuery<Collaborateur> query = em.createQuery("select c from Collaborateur c where c.matricule = :matricule", Collaborateur.class)
+				.setParameter("matricule", matricule);
+		
+		return query.getSingleResult();
 	}
 	
 	public void sauvegarderCollaborateur(Collaborateur collab) {
@@ -43,5 +60,9 @@ public class CollaborateurService {
 		collab.setActif(true);
 		em.persist(collab);
 		collabEvent.fire(new CollabEvent(now, TypeCollabEvent.CREATION_COLLAB, collab.getMatricule()));
+	}
+	
+	public void editerCollaborateur(Collaborateur collab) {
+		
 	}
 }

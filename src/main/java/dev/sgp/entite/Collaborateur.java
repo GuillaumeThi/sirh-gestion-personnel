@@ -5,6 +5,8 @@ import java.time.ZonedDateTime;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Collaborateur {
@@ -20,6 +22,9 @@ public class Collaborateur {
 	private String photo;
 	private ZonedDateTime dateHeureCreation;
 	private Boolean actif;
+	
+	@ManyToOne
+	private Departement departement;
 	
 	
 	public Collaborateur() {
@@ -54,6 +59,23 @@ public class Collaborateur {
 		this.photo = photo;
 		this.dateHeureCreation = dateHeureCreation;
 		this.actif = actif;
+	}
+	
+	public Collaborateur(String matricule, String nom, String prenom, LocalDate dateDeNaissance, String adresse, String numSecu,
+			String email, String photo, ZonedDateTime dateHeureCreation, boolean actif, Departement departement) {
+		
+		super();
+		this.matricule = matricule;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.dateDeNaissance = dateDeNaissance;
+		this.adresse = adresse;
+		this.numSecu = numSecu;
+		this.email = email;
+		this.photo = photo;
+		this.dateHeureCreation = dateHeureCreation;
+		this.actif = actif;
+		this.departement = departement;
 	}
 
 	public String getMatricule() {
@@ -134,5 +156,13 @@ public class Collaborateur {
 	
 	public void setActif(Boolean actif) {
 		this.actif = actif;
+	}
+	
+	public Departement getDepartement() {
+		return departement;
+	}
+	
+	public void setActif(Departement departement) {
+		this.departement = departement;
 	}
 }
